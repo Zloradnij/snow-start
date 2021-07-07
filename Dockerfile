@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    unzip
+    zip
+
+RUN apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get -y install nodejs
+RUN apt-get -y  install gcc g++ make
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
