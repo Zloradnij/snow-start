@@ -1,4 +1,4 @@
-/lib/mysql
+/lib/mysql/
 /node_modules
 /public/hot
 /public/storage
