@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Services\Dadata\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
 });
 
+/** API routes */
+Route::prefix('api')->group(function () {
+    Route::get('/find-car', [CarController::class, 'findCarTitle'])->name('find-car');
+});
