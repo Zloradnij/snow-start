@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1682abe99cc8b29732eb90d119929a6d",
+    "content-hash": "f52d6eaaa0f64b9d310d4da210b77941",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -807,6 +807,53 @@
                 "url"
             ],
             "time": "2021-04-26T09:17:50+00:00"
+        },
+        {
+            "name": "hflabs/dadata",
+            "version": "20.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hflabs/dadata-php.git",
+                "reference": "c6db345bb4a389423ba14f6c4c626d830c0d9992"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hflabs/dadata-php/zipball/c6db345bb4a389423ba14f6c4c626d830c0d9992",
+                "reference": "c6db345bb4a389423ba14f6c4c626d830c0d9992",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|^7.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dadata\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HFLabs and contributors",
+                    "homepage": "https://github.com/hflabs/dadata-php/contributors"
+                }
+            ],
+            "description": "Data cleansing, enrichment and suggestions via Dadata API",
+            "homepage": "https://github.com/nalgeon/dadata-php",
+            "keywords": [
+                "DaData",
+                "api",
+                "php",
+                "suggestions"
+            ],
+            "time": "2020-12-24T15:49:58+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7158,5 +7205,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "1.1.0"
 }
