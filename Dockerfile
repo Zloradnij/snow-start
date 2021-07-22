@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip
 
-RUN apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+RUN apt-get -y install curl dirmngr apt-transport-https lsb-release
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get -y install nodejs
 RUN apt-get -y  install gcc g++ make
