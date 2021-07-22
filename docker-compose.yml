@@ -1,6 +1,6 @@
-version: "3.7"
+version: '3.1'
 services:
-  app:
+  snow-zloradnij:
     build:
       args:
         user: sammy
@@ -13,39 +13,23 @@ services:
     working_dir: /var/www/
     volumes:
       - ./:/var/www
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.snow-zloradnij.entrypoints=http"
+      - "traefik.http.routers.snow-zloradnij.rule=Host(`www.snow.zloradnij.ru`,`snow.zloradnij.ru`)"  ## Hier eure Domain eingeben ##
+      - "traefik.http.middlewares.snow.zloradnij-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.snow-zloradnij.middlewares=snow-zloradnij-https-redirect"
+      - "traefik.http.routers.snow-zloradnij-secure.entrypoints=https"
+      - "traefik.http.routers.snow-zloradnij-secure.rule=Host(`www.snow.zloradnij.ru`,`snow.zloradnij.ru`)" ## Hier eure Domain eingeben ##
+      - "traefik.http.routers.snow-zloradnij-secure.tls=true"
+      - "traefik.http.routers.snow-zloradnij-secure.tls.certresolver=http"
+      - "traefik.http.routers.snow-zloradnij-secure.service=snow-zloradnij"
+      - "traefik.http.services.snow-zloradnij.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
     networks:
-      - snow_start
-    depends_on:
-      - snow-db
-
-  snow-db:
-    image: mariadb:latest
-    hostname: snow-db
-    container_name: snow-db
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    volumes:
-      - ./lib/mysql:/var/lib/mysql
-    networks:
-      - snow_start
-
-  nginx:
-    image: nginx:1.17-alpine
-    container_name: snow_start-nginx
-    restart: unless-stopped
-    ports:
-      - 8000:80
-    volumes:
-      - ./:/var/www
-      - ./docker-compose/nginx:/etc/nginx/conf.d
-    networks:
-      - snow_start
+      - proxy
+      - default
 
 networks:
-  snow_start:
+  proxy:
+    external: true
